@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #17181d; /* Dark Gray-Black (Main Background) */
+  --secondary: #292c35; /* Dark Gray-Blue (Forms, Navbars) */
+  --accent: #f09145; /* Vibrant Orange (CTA Buttons, Highlights) */
+  --contrast: #fcd9b8; /* Warm Beige-Peach (Text, Soft Highlights) */
+}
+
+/* Light Theme (Default) */
+:root {
+  --color-primary: #ffffff; /* White */
+  --color-secondary: #292c35; /* Light Gray */
+  --color-accent: #f09145; /* Orange */
+  --color-light: #292c35; /* Dark Text */
+  --shadow-dark: #000000;
+  --shadow-light: #424655;
+}
+
+/* Dark Theme */
+.dark {
+  --color-primary: #17181d; /* Dark Grayish Black */
+  --color-secondary: #292c35; /* Muted Charcoal Gray */
+  --color-accent: #f09145; /* Warm Orange */
+  --color-light: #fcd9b8; /* Soft Peach */
+  --shadow-dark: #000000;
+  --shadow-light: #5a5e6b;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+#Navlink {
+  text-align: center;
+  width: 100%;
+  border-bottom: 2px solid #d6d9db;
+  border-radius: 2rem;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-bottom: 0.7rem;
+}
+
+@layer utilities {
+  .custom-spin {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.websiteLoader {
+  animation: ZeroToOut 1.4s linear;
+}
+
+@keyframes ZeroToOut {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

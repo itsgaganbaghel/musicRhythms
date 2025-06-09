@@ -1,0 +1,300 @@
+[
+  {
+    "type": "Bhajan",
+    "tags": [
+      "Mahadev",
+      "Shiv",
+      "Shankar",
+      "Bhole Baba",
+      "Rudra",
+      "Krishna",
+      "Kanha",
+      "Govind",
+      "Gopal",
+      "Vasudeva",
+      "Ram",
+      "Shri Ram",
+      "Raghunandan",
+      "Sita Ram",
+      "Hanuman",
+      "Bajrang Bali",
+      "Pawan Putra",
+      "Anjaneya",
+      "Vishnu",
+      "Narayan",
+      "Hari",
+      "Keshava",
+      "Lakshmi",
+      "Durga",
+      "Parvati",
+      "Saraswati",
+      "Ganesh",
+      "Ganesha",
+      "Vinayaka",
+      "Ekadanta",
+      "Kali",
+      "Chamunda",
+      "Bhairavi"
+    ]
+  },
+  {
+    "type": "Love",
+    "tags": [
+      "Romantic",
+      "Heart",
+      "Soulmate",
+      "Feelings",
+      "Forever",
+      "Affection",
+      "Emotions",
+      "Couple",
+      "Together",
+      "Crush",
+      "Desire",
+      "Passion"
+    ]
+  },
+  {
+    "type": "BreakUp",
+    "tags": [
+      "Heartbreak",
+      "Sadness",
+      "Tears",
+      "Goodbye",
+      "Loneliness",
+      "Memories",
+      "Regret",
+      "Lost Love",
+      "Pain",
+      "Moving On"
+    ]
+  },
+  {
+    "type": "Sad",
+    "tags": [
+      "Alone",
+      "Depression",
+      "Tears",
+      "Loss",
+      "Darkness",
+      "Sorrow",
+      "Missing",
+      "Heartache",
+      "Cry"
+    ]
+  },
+  {
+    "type": "Party",
+    "tags": [
+      "Dance",
+      "Club",
+      "DJ",
+      "Bass",
+      "Remix",
+      "Electro",
+      "Hip-Hop",
+      "Disco",
+      "Music Festival",
+      "EDM"
+    ]
+  },
+  {
+    "type": "Rock",
+    "tags": [
+      "Electric Guitar",
+      "Drums",
+      "Headbang",
+      "Metal",
+      "Hard Rock",
+      "Alternative",
+      "Band",
+      "Concert"
+    ]
+  },
+  {
+    "type": "Pop",
+    "tags": [
+      "Trending",
+      "Viral",
+      "Hit",
+      "Charts",
+      "Radio",
+      "Billboard",
+      "Singer",
+      "Melody",
+      "Mainstream"
+    ]
+  },
+  {
+    "type": "Classical",
+    "tags": [
+      "Instrumental",
+      "Raga",
+      "Flute",
+      "Tabla",
+      "Violin",
+      "Carnatic",
+      "Hindustani",
+      "Traditional"
+    ]
+  },
+  {
+    "type": "Hip-Hop",
+    "tags": [
+      "Rap",
+      "Beats",
+      "Freestyle",
+      "Street",
+      "Bars",
+      "Urban",
+      "Trap",
+      "Rhyme",
+      "Mic Drop"
+    ]
+  },
+  {
+    "type": "Bollywood",
+    "tags": [
+      "Hindi Songs",
+      "Movies",
+      "Film",
+      "Playback Singer",
+      "Bollywood Music",
+      "Soundtrack"
+    ]
+  },
+  {
+    "type": "Romantic",
+    "tags": [
+      "Love",
+      "Soulmate",
+      "Heart",
+      "Valentine",
+      "Feelings",
+      "Forever",
+      "Emotions",
+      "Affection"
+    ]
+  },
+  {
+    "type": "Sufi",
+    "tags": [
+      "Qawwali",
+      "Spiritual",
+      "Mystic",
+      "Dervish",
+      "Meditation",
+      "Soulful",
+      "Divine",
+      "Allah",
+      "Peace"
+    ]
+  },
+  {
+    "type": "Folk",
+    "tags": [
+      "Traditional",
+      "Culture",
+      "Storytelling",
+      "Heritage",
+      "Acoustic",
+      "Village Music",
+      "Regional"
+    ]
+  },
+  {
+    "type": "Electronic",
+    "tags": [
+      "EDM",
+      "Synth",
+      "Techno",
+      "Bass",
+      "DJ",
+      "House Music",
+      "Trance",
+      "Dance Beat"
+    ]
+  },
+  {
+    "type": "Instrumental",
+    "tags": [
+      "Piano",
+      "Violin",
+      "Flute",
+      "Sitar",
+      "Guitar",
+      "Relaxing",
+      "Meditation",
+      "Background Music"
+    ]
+  },
+  {
+    "type": "Lo-Fi",
+    "tags": [
+      "Chill",
+      "Relaxing",
+      "Vibes",
+      "Mellow",
+      "Smooth",
+      "Aesthetic",
+      "Laid-Back",
+      "Late Night",
+      "Calm",
+      "Ambient"
+    ]
+  },
+  {
+    "type": "Flirty",
+    "tags": [
+      "Teasing",
+      "Playful",
+      "Fun",
+      "Charming",
+      "Flirt",
+      "Witty",
+      "Seductive",
+      "Lighthearted"
+    ]
+  },
+  {
+    "type": "Attitude",
+    "tags": [
+      "Boss",
+      "swag",
+      "Hustle",
+      "Confidence",
+      "Money",
+      "Flex",
+      "Rich",
+      "Power",
+      "Alpha",
+      "Luxury"
+    ]
+  },
+  {
+    "type": "Motivational",
+    "tags": [
+      "Hustle",
+      "Success",
+      "Struggles",
+      "Dream Big",
+      "No Limits",
+      "Ambition",
+      "Grind",
+      "Level Up",
+      "Determination"
+    ]
+  },
+  {
+    "type": "Self-Reflection",
+    "tags": [
+      "Introspective",
+      "Thoughtful",
+      "Meaningful",
+      "Emotional",
+      "Real Life",
+      "Personal Growth",
+      "Poetry"
+    ]
+  }
+]
