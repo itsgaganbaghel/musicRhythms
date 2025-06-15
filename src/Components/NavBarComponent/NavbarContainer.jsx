@@ -20,6 +20,7 @@ const NavbarContainer = () => {
                             <GiHamburgerMenu />
                     }
                 </p>
+                
                 <section className='w-32'>
                     <Logo />
                 </section>

@@ -51,7 +51,7 @@ const DeleteAccount = () => {
 
                     </div>
                     :
-                    <div className='bg-secondary py-16 px-12 rounded-2xl shadow-[inset_5px_-5px_5px_#101215,inset_-5px_5px_5px_#424655]'>
+                    <div className='w-[90%] mx-auto  bg-secondary py-16  px-12 rounded-2xl shadow-[inset_5px_-5px_5px_#101215,inset_-5px_5px_5px_#424655]'>
                         <h2 className='text-xl text-center md:text-start'>Are You really want to continue with the Account deletion Process ? </h2>
                         <div className='flex gap-10 justify-center mt-10'>
                             <button className='px-5 py-2 border-1 rounded-xl  text-primary bg-accent  font-bold text-xl'

@@ -25,6 +25,7 @@ const SongContext = ({ children }) => {
         formData.append("file", file);
         formData.append("upload_preset", "rhythm")
         formData.append("cloud_name", "dgdkrgtlv")
+        formData.append("folder", "rhythm")
 
         try {
             let cloudinaryURL = await axios.post("https://api.cloudinary.com/v1_1/dgdkrgtlv/upload", formData)

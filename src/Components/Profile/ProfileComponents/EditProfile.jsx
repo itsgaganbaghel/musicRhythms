@@ -62,11 +62,11 @@ const EditProfile = () => {
   }
 
   return (
-    <div className=' shadow-[inset_5px_-5px_5px_#101215,inset_-5px_5px_5px_#424655] bg-secondary   text-light min-w-[95vw] md:max-w-[70%] md:min-w-[70%] min-h-[70vh] md:max-h-[70vh] md:p-10  p-5 mt-20 md:mt-0 rounded-2xl'>
+    <div className=' shadow-[inset_5px_-5px_5px_#101215,inset_-5px_5px_5px_#424655] bg-secondary   text-light min-w-[90vw] md:max-w-[70%] md:min-w-[70%] min-h-[70vh] md:max-h-[70vh] md:p-10  p-5 mt-20 md:mt-0 rounded-2xl'>
       <h2 className='text-2xl font-bold underline underline-offset-4 decoration-slate-400 decoration-[1.2px]'>
         Edit Your Profile Details...
       </h2>
-      <form className='w-full h-full grid md:grid-cols-3 gap-x-24 gap-y-4 md:gap-y-24 mt-12'>
+      <form className='w-full h-full grid grid-cols-1 grid-rows-10 md:grid-cols-3 gap-x-24 gap-y-4 md:gap-y-24 mt-12'>
         <CustomInputFields name='firstName' value={firstName} handleChange={handleChange} />
         <CustomInputFields name='lastName' value={lastName} handleChange={handleChange} />
         <CustomInputFields type='tel' name='age' value={age} handleChange={handleChange} />
@@ -110,7 +110,7 @@ const EditProfile = () => {
 
         <div className='w-full  justify-center flex items-center'>
 
-          <button type='submit' onClick={handleSubmit} className=' px-16 py-3 bg-accent text-primary font-bold text-xl  tracking-wider rounded-xl hover:bg-light hover:text-primary transition-all duration-300 '>
+          <button type='submit' onClick={handleSubmit} className=' px-16 py-3 bg-accent text-primary font-bold text-2xl  tracking-wider rounded-xl hover:bg-light hover:text-primary transition-all duration-300 '>
             Update
           </button>
         </div>

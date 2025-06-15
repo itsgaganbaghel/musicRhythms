@@ -15,7 +15,7 @@ export default function Sidebar() {
 
 
     return (
-        <div className='relative w-full h-auto flex  p-20 gap-16 pt-10 justify-center items-center  text-light font-bold tracking-wide flex-wrap '>
+        <div className='relative w-full h-auto flex  md:p-20 gap-16 pt-10 justify-center items-center  text-light font-bold tracking-wide flex-wrap '>
             {navLinks.map(({ to, text, icon }) => (
                 <Link key={to} to={to}
                     className='rounded-[14px] bg-[#17181D] shadow-[inset_5px_-5px_5px_#090a0c,inset_-5px_5px_5px_#25262e] w-[350px] h-[200px] text-light gap-2  border-slate-300 relative group'>

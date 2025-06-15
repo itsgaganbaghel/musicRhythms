@@ -8,13 +8,13 @@ import NavbarContainer from '../NavBarComponent/NavbarContainer'
 const ProfileContainer = () => {
     return (
 
-        <div className='w-full min-h-[100vh] flex justify-center items-center bg-primary font-sans
+        <div className='w-full min-h-[100vh] flex justify-center bg-primary font-sans
         '>
-            <div className='hidden md:block w-[14vw]'>
+            <div className='hidden md:block w-[14vw] '>
                 <AlbumSideBar />
             </div>
-            <div className='w-[100vw] md:w-[86%] flex justify-center items-center relative flex-wrap'>
-                <div className='w-full block md:hidden sticky top-0'>
+            <div className='w-[100vw] pb-20 md:w-[86%] flex justify-center md:items-center relative flex-wrap min-h-screen'>
+                <div className='w-full block md:hidden sticky top-0 z-50 max-h-fit '>
                     <NavbarContainer />
                 </div>
                 <Outlet />
