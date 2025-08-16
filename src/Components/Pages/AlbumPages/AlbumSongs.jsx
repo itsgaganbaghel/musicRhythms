@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { RiPlayLargeLine } from 'react-icons/ri'
+import { RiDislikeLine, RiPlayLargeLine } from 'react-icons/ri'
 import { addAlbumContext } from '../../Context/SongContext'
 import gif from "../../../assets/playing.gif"
 import { FaRegHeart } from "react-icons/fa";
@@ -10,10 +10,16 @@ import { doc, setDoc } from 'firebase/firestore'
 import { __DB } from '../../../Backend/Firebase'
 
 const AlbumSongs = ({ album }) => {
-    let { allSongsData } = album
+    let { allSongsData } = album;
+    console.log(allSongsData, "albumSongs - all songs ")
 
     let { songIndex, setSongIndex, audioPlayerData, setAudioPlayerData, setIsPlaying, isPlaying } = useContext(addAlbumContext);
     let { profileData, authUserData } = useContext(AuthUserContext)
+
+    let checkISFavorite = () => {
+        console.log('checking')
+    }
+
 
     let handleFavouriteSongs = async (song) => {
         if (!authUserData?.uid) {
@@ -93,7 +99,9 @@ const AlbumSongs = ({ album }) => {
                             </div>
 
                             <div className='hidden  cursor-pointer text-xl md:flex justify-center' onClick={() => handleFavouriteSongs(song)}>
-                                <FaRegHeart />
+                                {
+                                    // isSongExists === true ? <RiDislikeLine /> : <FaRegHeart />
+                                }
                             </div>
 
 

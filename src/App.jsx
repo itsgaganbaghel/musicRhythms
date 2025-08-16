@@ -14,7 +14,6 @@ const App = () => {
 
   let { showWebsite, setShowWebsite } = useContext(AuthUserContext)
   let { audioPlayerData } = useContext(addAlbumContext)
-  console.log("audioPlayerData", audioPlayerData)
   useEffect(() => {
     setTimeout(() => {
       setShowWebsite(true);
@@ -31,11 +30,11 @@ const App = () => {
         </div>
       }
       <div className={`w-full flex ${showWebsite ? "block" : "hidden"}`}>
-        <div className='lg:w-[14%] hidden md:block'>
+        <div className='lg:w-[20%] xl:w-[14%] hidden lg:block'>
           <AlbumSideBar />
         </div>
 
-        <div className='flex flex-col lg:w-[86%] w-full'>
+        <div className='flex flex-col lg:w-[80%] xl:w-[86vw] w-full'>
           <NavbarContainer />
           <Outlet />
           {

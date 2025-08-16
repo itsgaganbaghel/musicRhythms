@@ -22,10 +22,10 @@ const Menu = () => {
       <div onClick={(e) => {
         setVisibility(true);
         setTargetModel("profile")
-      }} className=' cursor-pointer'>
+      }} className=' cursor-pointer border-5 bg-red-50 w-14 h-14 rounded-full overflow-hidden border-red-500'>
         {
           authUserData?.photoURL ?
-            <img src={authUserData?.photoURL} width={32} className='rounded-full hover:scale-105' />
+            <img src={authUserData?.photoURL}  className=' hover:scale-105' />
             :
             <span className='pb-3  rounded-2xl px-6 py-2 border-2 border-primary hover:bg-secondary  hover:shadow-[inset_5px_-5px_5px_#101215,inset_-5px_5px_5px_#424655] '>Profile</span>
         }
@@ -62,12 +62,12 @@ const Menu = () => {
           isAuthenticatedUser()
           : isAnonymousUser()
       }
-      <button
+      {/* <button
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className=" text-white rounded-full text-2xl h-full  "
       >
         {theme === "dark" ? "☀️" : "🌙"}
-      </button>
+      </button> */}
 
 
       {
