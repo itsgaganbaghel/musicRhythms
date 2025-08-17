@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 const PublicRoutes = ({ children }) => {
     let { authUserData } = useContext(AuthUserContext)
     let navigate = useNavigate();
-    console.log(authUserData)
+    // console.log(authUserData)
     if (!authUserData?.accessToken ||
         !window.localStorage.getItem("TOKEN")) {
         return <>

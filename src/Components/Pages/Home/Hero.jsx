@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Hero = () => {
   return (
     <div
-      className="  lg:max-h-[75vh] lg:h-[75vh]  overflow-hidden w-full flex flex-col-reverse lg:flex-row justify-between  lg:pl-10 items-center "
+      className="  lg:max-h-[75vh] lg:h-[65vh] xl:h-[70vh]  overflow-hidden w-full flex flex-col-reverse lg:flex-row justify-between  lg:pl-10 items-center  "
       id="Hero"
     >
       <div className="w-[94vw] flex flex-col lg:block items-center justify-center lg:w-[55%] mt-14 lg:px-0  ">
@@ -14,7 +14,7 @@ const Hero = () => {
           one Place
         </h2>
 
-        <p className=" my-8 mt-10 w-[90%] md:text-xl lg:text-lg text-sm text-center lg:text-start">
+        <p className=" my-8 mt-10 w-[90%] md:text-xl lg:text-[16px] text-sm text-center lg:text-start">
           On our website, you can access an amazing collection of popular and
           new songs. Stream your favorite tracks in high quality and enjoy
           without interruptions. Whatever your taste in music, we have it all
@@ -26,15 +26,15 @@ const Hero = () => {
             Discover Now
           </NavLink>
 
-          <NavLink className="text-light lg:text-center   border border-light md:px-6 px-2 py-3  text-sm md:text-lg rounded-lg">
+          <NavLink className="text-light lg:text-center   border border-light md:px-6 px-2 py-3  text-sm  rounded-lg">
             check your favorite Rhythms
           </NavLink>
         </div>
       </div>
       <img
-        src={heroBg}
+        src={"https://res.cloudinary.com/dgdkrgtlv/image/upload/v1755466276/ripanrnsftek5nbzaacc.png"}
         alt="hero Bg Image"
-        className=" lg:w-[45%] md:w-[60%] drop-shadow-[0px_10px_14px_rgba(135,206,235,1)]"
+        className=" lg:w-[45%] md:w-[60%] drop-shadow-[0px_10px_14px_rgba(135,206,235,1)] lg:scale-110  xl:scale-100"
       />
     </div>
   );

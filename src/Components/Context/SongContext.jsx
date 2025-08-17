@@ -9,7 +9,7 @@ export let addAlbumContext = createContext()
 const SongContext = ({ children }) => {
     let [songsData, setSongsData] = useState([]) // songs data : for payload
     let [songIndex, setSongIndex] = useState(null) //songIndex : dynamic indexing updation
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     let [audioPlayerData, setAudioPlayerData] = useState([]) // current song data 
     

@@ -39,13 +39,13 @@ const AlbumSideBar = () => {
 
   return (
     <div
-      className=" md:min-h-[100vh] min-h-[90vh]  flex flex-col gap-2  items-center bg-primary border-r-2 border-r-accent text-light font-bold tracking-wide px-3  "
+      className=" lg:min-h-[100vh] min-h-[90vh]  flex flex-col gap-2  items-center bg-primary border-r-2 border-r-accent text-light font-bold tracking-wide px-3  pt-2 md:pt-10 lg:pt-0  "
       onClick={() => setIsMenuVisible(false)}
     >
-      <div className="hidden md:block my-3">
+      <div className="hidden lg:block my-3">
         <Logo />
       </div>
-      <p className="w-full pl-1 opacity-70 text-sm text-accent">Browse</p>
+      <p className="w-full pl-1 opacity-70 text-sm  text-accent">Browse</p>
       {location?.pathname == "/" ? (
         <>
           {linksArray.map((v, i) => {

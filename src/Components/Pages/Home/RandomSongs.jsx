@@ -16,7 +16,7 @@ const RandomSongs = ({ count }) => {
     return (
         <div className='w-full min-h-[38vh] text-light ' id='random_Songs'>
             <p className=' text-4xl font-serif mb-6 pl-10 font-extrabold'>Random Songs</p>
-            <div className='w-full flex md:flex-row flex-col justify-center md:flex-wrap gap-20   px-14 relative'>
+            <div className='w-full flex md:flex-row flex-col justify-center items-center md:flex-wrap gap-20   px-14 relative '>
                 {
                     allSongs.length > 0 &&
                     allSongs.filter((_, i) => i < count)

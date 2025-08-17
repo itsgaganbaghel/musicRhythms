@@ -9,7 +9,6 @@ import ProfileHeader from '../../utilities/ProfileHeader'
 const DeleteAccount = () => {
     let [condition, setCondition] = useState(false)
     let { authUserData } = useContext(AuthUserContext || {})
-    console.log(authUserData)
     let navigate = useNavigate()
     let handleDelete = async (e) => {
         try {

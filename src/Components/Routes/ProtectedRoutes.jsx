@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom'
 
 const ProtectedRoutes = ({ children }) => {
     let { authUserData } = useContext(AuthUserContext || {})
-    console.log(authUserData)
 
     if (authUserData !== null || authUserData?.accessToken 
         || window.localStorage.getItem("TOKEN")) {

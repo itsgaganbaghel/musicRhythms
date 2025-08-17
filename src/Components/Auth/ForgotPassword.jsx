@@ -13,14 +13,14 @@ const ForgotPassword = () => {
     let [email, setEmail] = useState('')
 
     let { authUserData } = useContext(AuthUserContext)
-    console.log(authUserData)
+    // console.log(authUserData)
 
 
     let navigate = useNavigate()
 
     let handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(email)
+        // console.log(email)
         if (email.trim()) {
             try {
                 sendPasswordResetEmail(__AUTH, email)
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
                                 className="hover:underline  text-start underline-offset-4 hover:text-accent transition duration-300 hover:opacity-100 ml-2"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    console.log('click')
+                                    // console.log('click')
                                     setVisibility(true);
                                     setTargetModel("login");
                                 }}

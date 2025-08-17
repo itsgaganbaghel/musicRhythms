@@ -1,87 +1,91 @@
-import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
-import App from '../../App'
-import ProfileContainer from '../Profile/ProfileContainer'
-import EditProfile from '../Profile/ProfileComponents/EditProfile'
-import DeleteAccount from '../Profile/ProfileComponents/DeleteAccount'
-import EditProfilePhoto from '../Profile/ProfileComponents/EditProfilePhoto'
-import ResetPassword from '../Profile/ProfileComponents/ResetPassword'
-import Admin from '../Admin/Admin'
-import AlbumDetails from '../Pages/AlbumPages/AlbumDetails'
-import AlbumContainer from '../Pages/AlbumPages/AlbumContainer'
-import Home from '../Pages/Home'
-import Setting from '../Profile/ProfileComponents/Setting'
-import ProtectedRoutes from './ProtectedRoutes'
-import AdminRoutes from './AdminRoutes'
-import LikedSongs from '../Pages/LikedSongs'
+import React, { lazy, Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import App from "../../App";
+import ProtectedRoutes from "./ProtectedRoutes";
+import AdminRoutes from "./AdminRoutes";
+import FallbackUI from "../Pages/Home/FallbackUI";
+
+// ✅ Lazy imports
+const ProfileContainer = lazy(() => import("../Profile/ProfileContainer"));
+const EditProfile = lazy(() =>
+  import("../Profile/ProfileComponents/EditProfile")
+);
+const DeleteAccount = lazy(() =>
+  import("../Profile/ProfileComponents/DeleteAccount")
+);
+const EditProfilePhoto = lazy(() =>
+  import("../Profile/ProfileComponents/EditProfilePhoto")
+);
+const ResetPassword = lazy(() =>
+  import("../Profile/ProfileComponents/ResetPassword")
+);
+const Admin = lazy(() => import("../Admin/Admin"));
+const AlbumDetails = lazy(() => import("../Pages/AlbumPages/AlbumDetails"));
+const AlbumContainer = lazy(() => import("../Pages/AlbumPages/AlbumContainer"));
+const Home = lazy(() => import("../Pages/Home"));
+const Setting = lazy(() => import("../Profile/ProfileComponents/Setting"));
+const LikedSongs = lazy(() => import("../Pages/LikedSongs"));
+
+// ✅ Suspense wrapper for all routes
+const withSuspense = (element) => (
+  <Suspense fallback={<FallbackUI data={"Content"} />}>{element}</Suspense>
+);
+
 export const Routers = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: withSuspense(<AlbumContainer />),
         children: [
-            {
-                path: "/",
-                element: <AlbumContainer />,
-                children: [
-                    {
-                        path: '/',
-                        element:
-                            <Home />
-                    },
-                    {
-                        path: "album/:id",
-                        element: <AlbumDetails />
-                    },
-                    {
-                        path: '/user/FavoriteSongs',
-                        element: <LikedSongs />
-                    }
-                ]
-            },
-
-
-
-
-        ]
-
-    },
-    {
-        path: '/user',
-        element:
-            <ProtectedRoutes>
-                <ProfileContainer />
-            </ProtectedRoutes>,
-        children: [
-
-            {
-                index: true,
-                element: <Setting />
-            },
-            {
-                path: 'addAlbum',
-                element: (
-                    <AdminRoutes>
-                        <Admin />
-                    </AdminRoutes>)
-            },
-            {
-                path: "editProfile",
-                element: <EditProfile />
-            },
-            {
-                path: "deleteAccount",
-                element: <DeleteAccount />
-            },
-            {
-                path: "editProfilePhoto",
-                element: <EditProfilePhoto />
-            },
-            {
-                path: 'updatePassword',
-                element: <ResetPassword />
-            }
-
-
-        ]
-    },
-])
+          {
+            path: "/",
+            element: withSuspense(<Home />),
+          },
+          {
+            path: "album/:id",
+            element: withSuspense(<AlbumDetails />),
+          },
+          {
+            path: "/user/FavoriteSongs",
+            element: withSuspense(<LikedSongs />),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/user",
+    element: (
+      <ProtectedRoutes>{withSuspense(<ProfileContainer />)}</ProtectedRoutes>
+    ),
+    children: [
+      {
+        index: true,
+        element: withSuspense(<Setting />),
+      },
+      {
+        path: "addAlbum",
+        element: <AdminRoutes>{withSuspense(<Admin />)}</AdminRoutes>,
+      },
+      {
+        path: "editProfile",
+        element: withSuspense(<EditProfile />),
+      },
+      {
+        path: "deleteAccount",
+        element: withSuspense(<DeleteAccount />),
+      },
+      {
+        path: "editProfilePhoto",
+        element: withSuspense(<EditProfilePhoto />),
+      },
+      {
+        path: "updatePassword",
+        element: withSuspense(<ResetPassword />),
+      },
+    ],
+  },
+]);

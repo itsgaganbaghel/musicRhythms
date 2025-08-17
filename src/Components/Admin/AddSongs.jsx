@@ -26,7 +26,6 @@ const AddSongs = () => {
   const [songTagsData, setSongTagsData] = useState('');
   const [songLanguageData, setSongLanguageData] = useState('');
   const [songTagsOptions, setSongTagsOptions] = useState([]);
-  console.log(songLanguageData)
 
   const { uploadOnCloudinary, setSongsData, songsData } = useContext(addAlbumContext);
 

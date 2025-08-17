@@ -33,7 +33,7 @@ const AddAlbum = () => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(albumData)
+    // console.log(albumData)
     if (songsData.length > 0) {
       let payload = { ...albumData, allSongsData: [...songsData] }
 

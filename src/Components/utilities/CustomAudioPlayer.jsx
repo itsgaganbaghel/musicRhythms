@@ -1,5 +1,12 @@
 // AudioPlayer.jsx
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+  useMemo,
+  useCallback,
+} from "react";
 import { FaPause, FaVolumeDown, FaVolumeUp } from "react-icons/fa";
 import {
   IoPlayBackSharp,
@@ -17,27 +24,29 @@ import { doc, setDoc } from "firebase/firestore";
 import { AuthUserContext } from "../Context/AuthContext";
 
 const CustomAudioPlayer = ({ tracks }) => {
-  console.log(tracks);
+  // console.log(tracks);
 
   let { songIndex, setSongIndex, isPlaying, setIsPlaying } =
     useContext(addAlbumContext);
-  console.log(songIndex);
 
   let { profileData, authUserData } = useContext(AuthUserContext);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isMute, setIsMute] = useState(true);
   const [isFavourite, setIsFavourite] = useState(false);
+
+  const currentTrack = useMemo(() => tracks[songIndex], [tracks, songIndex]);
+
   const {
     songName: title,
     songActors: artist,
     color,
     songThumbnail: image,
     songUrl: audioSrc,
-  } = tracks[songIndex];
+  } = currentTrack;
 
   useEffect(() => {
     setTrackIndex(songIndex);
-    console.log(songIndex);
+    // console.log(songIndex);
   }, [songIndex]);
 
   const [trackProgress, setTrackProgress] = useState(0);
@@ -97,43 +106,34 @@ const CustomAudioPlayer = ({ tracks }) => {
     audioRef.current.volume = volume;
   }, [volume]);
 
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
+  const handlePlayPause = useCallback(() => {
+    setIsPlaying((prev) => !prev);
+  }, [setIsPlaying]);
 
-  const handleNextTrack = () => {
-    if (songIndex < tracks.length - 1) {
-      setSongIndex(songIndex + 1);
-      setIsPlaying(true);
-    } else {
-      setSongIndex(0);
-      setIsPlaying(false);
-    }
-  };
+  const handleNextTrack = useCallback(() => {
+    setSongIndex((prev) => (prev < tracks.length - 1 ? prev + 1 : 0));
+    setIsPlaying(true);
+  }, [setSongIndex, setIsPlaying, tracks.length]);
 
-  const handlePrevTrack = () => {
-    if (songIndex > 0) {
-      setSongIndex(songIndex - 1);
-      setIsPlaying(true);
-    } else {
-      setTrackIndex(tracks.length - 1);
-      setIsPlaying(false);
-    }
-  };
-  const increaseVolume = () => {
+  const handlePrevTrack = useCallback(() => {
+    setSongIndex((prev) => (prev > 0 ? prev - 1 : tracks.length - 1));
+    setIsPlaying(true);
+  }, [setSongIndex, setIsPlaying, tracks.length]);
+
+  const increaseVolume = useCallback(() => {
     setVolume((prevVolume) =>
       prevVolume < 1 ? Number((prevVolume + 0.1).toFixed(1)) : 1
     );
-  };
+  }, []);
 
-  const decreaseVolume = () => {
+  const decreaseVolume = useCallback(() => {
     setVolume((prevVolume) =>
       prevVolume > 0 ? Number((prevVolume - 0.1).toFixed(1)) : 0
     );
-  };
+  }, []);
 
-  const muteVolume = () => {
-    if (isMute == true) {
+  const muteVolume = useCallback(() => {
+    if (isMute) {
       toast.success("mute");
       setVolume(0);
       setIsMute(false);
@@ -142,110 +142,102 @@ const CustomAudioPlayer = ({ tracks }) => {
       setVolume(0.5);
       setIsMute(true);
     }
-  };
+  }, [isMute]);
 
-  const onScrub = (value) => {
+  const onScrub = useCallback((value) => {
     clearInterval(intervalRef.current);
     audioRef.current.currentTime = value;
     setTrackProgress(audioRef.current.currentTime);
-  };
+  }, []);
 
-  const onScrubEnd = () => {
+  const onScrubEnd = useCallback(() => {
     if (isPlaying) {
       startTimer();
     }
-  };
+  }, [isPlaying, startTimer]);
 
-  const currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : "0%";
-  const trackStyling = `
-    -webkit-gradient(linear, left top, right top,
-      color-stop(${currentPercentage}, #FFDDBB),
-      color-stop(${currentPercentage}, #7777))
-  `;
+  const currentPercentage = useMemo(
+    () => (duration ? `${(trackProgress / duration) * 100}%` : "0%"),
+    [trackProgress, duration]
+  );
 
-  const volumeStyling = `
+  const trackStyling = useMemo(
+    () => `
+      -webkit-gradient(linear, left top, right top,
+        color-stop(${currentPercentage}, #FFDDBB),
+        color-stop(${currentPercentage}, #7777))
+    `,
+    [currentPercentage]
+  );
+
+  const volumeStyling = useMemo(
+    () => `
       -webkit-gradient(linear, left top, right top,
       color-stop(${volume}, #FFDDBB),
       color-stop(${volume}, #7777))
-    `;
+    `,
+    [volume]
+  );
 
-  function formatTime(time) {
+  const formatTime = useCallback((time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  }
+  }, []);
 
   // ! add to fav songs
-  let isSongExists = profileData?.favouriteSongs?.some(
-    (v) => v.songName === tracks[songIndex].songName
+  let isSongExists = useMemo(
+    () =>
+      profileData?.favouriteSongs?.some(
+        (v) => v.songName === currentTrack.songName
+      ),
+    [profileData, currentTrack]
   );
 
-  let handleFavouriteSongs = async (song) => {
-    console.log(song, "song");
-    if (!authUserData?.uid) {
-      toast.error("Login first");
-      return;
-    }
+  const handleFavouriteSongs = useCallback(
+    async (song) => {
+      if (!authUserData?.uid) {
+        toast.error("Login first");
+        return;
+      }
+      let payload = {};
+      if (isSongExists) {
+        payload = {
+          ...profileData,
+          favouriteSongs: profileData?.favouriteSongs.filter(
+            (v) => v.songName !== song.songName
+          ),
+        };
+      } else {
+        payload = {
+          ...profileData,
+          favouriteSongs: [...(profileData?.favouriteSongs || []), song],
+        };
+      }
 
-    if (isSongExists) {
-      toast.error("Song is already in Favourite");
-      return;
-    }
-
-    let payload = {
-      ...profileData,
-      favouriteSongs: [...(profileData?.favouriteSongs || []), song],
-    };
-
-    try {
-      await setDoc(doc(__DB, "user_Profile", authUserData?.uid), payload);
-      toast.success("Song is added in Your Favourites");
-      setIsFavourite(true);
-    } catch (error) {
-      toast.error("Failed to update favourites");
-      toast.error(error.code.slice(5));
-    }
-  };
-
-  // console.log(profileData?.favouriteSongs.filter((v, i) => v.songName !== tracks[songIndex].songName))
-
-  let handleDeletionFavouriteSongs = async (song) => {
-    console.log("song : ", song);
-    if (authUserData?.uid) {
-      let payload = {
-        ...profileData,
-        favouriteSongs: profileData?.favouriteSongs.filter(
-          (v, i) => v.songName !== song.songName
-        ),
-      };
-      // console.log(payload)
-      payload &&
-        (await setDoc(doc(__DB, "user_Profile", authUserData?.uid), payload));
-      toast.success("Removed from favourites");
-      setIsFavourite(false);
-    } else {
-      toast.error("login First");
-    }
-  };
-
-  let handleFavourite = (song) => {
-    if (isFavourite) {
-      handleDeletionFavouriteSongs(song);
-    } else {
-      handleFavouriteSongs(song);
-    }
-  };
+      try {
+        await setDoc(doc(__DB, "user_Profile", authUserData?.uid), payload);
+        isSongExists
+          ? toast.success("Song is removed in Your Favourites")
+          : toast.success("Song is added in Your Favourites");
+        setIsFavourite(true);
+      } catch (error) {
+        toast.error("Failed to update favourites");
+        toast.error(error.code.slice(5));
+      }
+    },
+    [authUserData, profileData, isSongExists, currentTrack]
+  );
 
   return (
-    <div className="flex flex-col md:flex-row  max-h-[15vh] min-h-[10vh] md:items-center  bg-secondary shadow-2xl text-white w-[100vw] relative overflow-y-hidden px-4 py-4 gap-2">
+    <div className="flex flex-col md:flex-row  md:max-h-[15vh] min-h-[10vh] md:items-center  bg-secondary shadow-2xl text-white w-[100vw] relative overflow-y-hidden px-4 py-4 gap-2">
       <div className="min-w-[15%]  h-full flex justify-start items-center gap-4   ">
         <img
           src={image}
           alt={`Artwork for ${title}`}
-          className={`w-12 h-12 md:rounded-full  md:${
-            isPlaying == true && "custom-spin"
+          title={`Thumbnail of ${title}`}
+          className={`w-12 h-12 rounded-full  ${
+            isPlaying == true ? "custom-spin" : ""
           }`}
         />
 
@@ -259,7 +251,7 @@ const CustomAudioPlayer = ({ tracks }) => {
         <div className="w-full flex items-center justify-center gap-6   ">
           <button
             onClick={muteVolume}
-            className={`text-gray-500 hover:text-white focus:outline-none  p-2 rounded-full  ml-10`}
+            className={` hidden md:block text-gray-500 hover:text-white focus:outline-none  p-2 rounded-full  ml-10`}
             title="mute"
           >
             <BiSolidVolumeMute />
@@ -268,6 +260,7 @@ const CustomAudioPlayer = ({ tracks }) => {
           <button
             onClick={handlePrevTrack}
             className="text-gray-500 text-xl hover:text-white focus:outline-none"
+            title="Previous Song"
           >
             <IoPlayBackSharp />
           </button>
@@ -275,6 +268,7 @@ const CustomAudioPlayer = ({ tracks }) => {
           <button
             onClick={handlePlayPause}
             className="text-gray-500 hover:text-white focus:outline-none text-xl"
+            title={isPlaying === true ? "Pause Song" : "Play Song"}
           >
             {isPlaying ? <FaPause /> : <IoPlaySharp />}
           </button>
@@ -282,12 +276,13 @@ const CustomAudioPlayer = ({ tracks }) => {
           <button
             onClick={handleNextTrack}
             className="text-gray-500 text-xl hover:text-white focus:outline-none"
+            title="Next Song"
           >
             <IoPlayForwardSharp />
           </button>
 
           <button
-            className="text-gray-500 hover:text-white focus:outline-none ml-2 "
+            className="text-gray-500 hover:text-white focus:outline-none ml-2 hidden md:block "
             title="allow music on loop "
           >
             <ImLoop />
@@ -295,16 +290,18 @@ const CustomAudioPlayer = ({ tracks }) => {
 
           <button
             className="text-gray-500 hover:text-white focus:outline-none ml-2 "
-            title="add to favourite "
-            // onClick={isSongExists === true ? () => handleDeletionFavouriteSongs(tracks[songIndex]) : () => handleFavouriteSongs(tracks[songIndex])}
-
-            onClick={() => handleFavourite(tracks[songIndex])}
+            title={
+              isSongExists === true
+                ? "Remove From the Favorite"
+                : "Add From the Favorite"
+            }
+            onClick={() => handleFavouriteSongs(tracks[songIndex])}
           >
             {isSongExists === true ? <RiDislikeLine /> : <FaRegHeart />}
           </button>
         </div>
 
-        <div className=" hidden w-full md:flex justify-center items-center gap-6 text-gray-400  ">
+        <div className="  w-full flex justify-center items-center gap-6 text-gray-400  ">
           <p className="text-xl pb-1">{formatTime(trackProgress)}</p>
           <input
             type="range"
@@ -332,6 +329,7 @@ const CustomAudioPlayer = ({ tracks }) => {
             volume === 0 ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={volume === 0}
+          title="Volume Down"
         >
           <FaVolumeDown />
         </button>
@@ -345,6 +343,7 @@ const CustomAudioPlayer = ({ tracks }) => {
           style={{ background: volumeStyling }}
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           className="w-16 py-2 rounded-full appearance-none  -rotate-90 shadow-[5px_5px_30px_rgba(20,20,20,0.8),5px_5px_30px_rgba(60,60,60,0.8)] bg-primary text-white "
+          title="Volume Slider"
         />
 
         <button
@@ -353,6 +352,7 @@ const CustomAudioPlayer = ({ tracks }) => {
             volume === 1 ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={volume === 1}
+          title="Volume Up"
         >
           <FaVolumeUp />
         </button>

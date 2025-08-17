@@ -10,11 +10,11 @@ const ProfileContainer = () => {
 
         <div className='w-full min-h-[100vh] flex justify-center bg-primary font-sans
         '>
-            <div className='hidden md:block w-[14vw] '>
+            <div className='hidden lg:block  lg:w-[18vw] xl:w-[14vw]  '>
                 <AlbumSideBar />
             </div>
-            <div className='w-[100vw] pb-20 md:w-[86%] flex justify-center md:items-center relative flex-wrap min-h-screen'>
-                <div className='w-full block md:hidden sticky top-0 z-50 max-h-fit '>
+            <div className='w-[100vw] lg:w-[82vw] xl:w-[86%] flex justify-center items-start lg:items-center  relative flex-wrap min-h-screen'>
+                <div className='w-full block lg:hidden sticky top-0 z-50 max-h-fit '>
                     <NavbarContainer />
                 </div>
                 <Outlet />

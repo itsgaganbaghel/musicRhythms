@@ -55,7 +55,7 @@ const NewReleased = ({ count, unique = false }) => {
       <p className=" text-4xl font-serif mb-6 pl-8  font-extrabold">
         New Released
       </p>
-      <div className="w-full flex md:flex-row flex-col justify-center md:flex-wrap  gap-20  px-14 relative">
+      <div className="w-full flex md:flex-row flex-col justify-center items-center md:flex-wrap  gap-20  px-14 relative">
         {allSortedSongs.length > 0 &&
           allSortedSongs.map((song, index) => (
             <figure
