@@ -60,7 +60,7 @@ const AlbumSongs = ({ album }) => {
   };
 
   return (
-    <div className="w-full md:px-10 px-2 ">
+    <div className="w-full md:px-10 px-2 pb-8 md:pb-0 ">
       <div className=" w-full  grid grid-cols-2 md:grid-cols-4 text-2xl py-5">
         <article className=" flex justify-start gap-4 md:gap-10 md:px-6 ">
           <p className="text-center  w-[20%]">#</p>
@@ -104,7 +104,7 @@ const AlbumSongs = ({ album }) => {
             </div>
 
             {/* Song Details */}
-            <div>
+            <div className=" text-center md:text-start">
               <p className=" text-0.5rem] md:text-[1.3rem] font-semibold">
                 {song.songName}
               </p>

@@ -7,7 +7,7 @@ const AlbumDetails = () => {
   let stateData = useLocation();
   let { album } = stateData.state;
   return (
-    <div className="w-full md:w-[86vw] relative mb-[17vh]">
+    <div className="w-full lg:w-[86vw] relative pb-[17vh] md:pb-[10vh]">
       <AlbumHeaderSection album={album} />
       <AlbumSongs album={album} />
     </div>
