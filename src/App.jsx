@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowWebsite(true);
-    }, 1600);
+    }, 1400);
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const App = () => {
           <img src={logo} className="websiteLoader w-52" alt="Loading..." />
         </div>
       )}
-      <div className={`w-full flex ${showWebsite ? "block" : "hidden"} `}>
+      <div className={`w-full flex ${showWebsite ? "flex" : "hidden"} `}>
         <div className="lg:w-[18%] xl:w-[14%] hidden lg:block">
           <AlbumSideBar />
         </div>

@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import heroBg from "../../../assets/heroBg.png";
 import { NavLink } from "react-router-dom";
+import { AuthUserContext } from "../../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const Hero = () => {
+  let { authUserData } = useContext(AuthUserContext);
+
+  let handleLikedSongNavLink = useCallback(() => {
+    if (!authUserData?.uid) {
+      toast.error("login First");
+    } else {
+      toast.success("Your Liked Rhythms");
+    }
+  }, [authUserData?.uid]);
   return (
     <div
       className="  lg:max-h-[75vh] lg:h-[65vh] xl:h-[70vh]  overflow-hidden w-full flex flex-col-reverse lg:flex-row justify-between  lg:pl-10 items-center  "
@@ -22,17 +33,26 @@ const Hero = () => {
         </p>
 
         <div className=" flex gap-4 font-bold ">
-          <NavLink className="bg-accent text-primary lg:text-center  md:px-6  px-3 text-sm md:text-lg py-3 rounded-lg">
+          <a
+            href="#top_Album"
+            className="bg-accent text-primary lg:text-center  md:px-6  px-3 text-sm md:text-lg py-3 rounded-lg"
+          >
             Discover Now
-          </NavLink>
+          </a>
 
-          <NavLink className="text-light lg:text-center   border border-light md:px-6 px-2 py-3  text-sm  rounded-lg">
+          <NavLink
+            to={"/user/FavoriteSongs"}
+            onClick={handleLikedSongNavLink}
+            className="text-light lg:text-center   border border-light md:px-6 px-2 py-3  text-sm  rounded-lg"
+          >
             check your favorite Rhythms
           </NavLink>
         </div>
       </div>
       <img
-        src={"https://res.cloudinary.com/dgdkrgtlv/image/upload/v1755466276/ripanrnsftek5nbzaacc.png"}
+        src={
+          "https://res.cloudinary.com/dgdkrgtlv/image/upload/v1755466276/ripanrnsftek5nbzaacc.png"
+        }
         alt="hero Bg Image"
         className=" lg:w-[45%] md:w-[60%] drop-shadow-[0px_10px_14px_rgba(135,206,235,1)] lg:scale-110  xl:scale-100"
       />

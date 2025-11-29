@@ -51,7 +51,7 @@ const CustomAudioPlayer = ({ tracks }) => {
 
   const [trackProgress, setTrackProgress] = useState(0);
 
-  const [volume, setVolume] = useState(0.5); // Initial volume set to 50%
+  const [volume, setVolume] = useState(1); // Initial volume set to 50%
 
   const audioRef = useRef(new Audio(tracks[songIndex].audioSrc));
   const intervalRef = useRef();
@@ -342,7 +342,7 @@ const CustomAudioPlayer = ({ tracks }) => {
           value={volume}
           style={{ background: volumeStyling }}
           onChange={(e) => setVolume(parseFloat(e.target.value))}
-          className="w-16 py-2 rounded-full appearance-none  -rotate-90 shadow-[5px_5px_30px_rgba(20,20,20,0.8),5px_5px_30px_rgba(60,60,60,0.8)] bg-primary text-white "
+          className="w-16 py-2 rounded-full appearance-none  -rotate-90 shadow-[5px_5px_30px_rgba(20,20,20,0.8),5px_5px_30px_rgba(60,60,60,0.8)] bg-primary text-white border-2 border-gray-500 cursor-grab "
           title="Volume Slider"
         />
 

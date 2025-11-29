@@ -85,7 +85,10 @@ const LikedSongs = () => {
                     />
                     {/* Overlay and Play Button */}
                     <section className="absolute inset-0 bg-black/70 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md">
-                      <button className="text-5xl text-white">
+                      <button
+                        className="text-5xl text-white"
+                        onClick={() => setIsPlaying(true)}
+                      >
                         <RiPlayLargeLine />
                       </button>
                     </section>

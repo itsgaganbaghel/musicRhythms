@@ -99,7 +99,7 @@ const NewReleased = ({ count, unique = false }) => {
               </figcaption>
             </figure>
           ))}
-        {count && (
+        {/* {count && (
           <NavLink
             to={""}
             state={""}
@@ -110,7 +110,7 @@ const NewReleased = ({ count, unique = false }) => {
               <FaArrowRight />
             </span>
           </NavLink>
-        )}
+        )} */}
       </div>
     </div>
   );

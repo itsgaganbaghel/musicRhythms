@@ -53,14 +53,14 @@ const RandomSongs = ({ count }) => {
                         })
 
                 }
-                {
+                {/* {
                     count &&
                     <NavLink to={''} state={''}
                     className="border-2 border-light flex items-center text-xl gap-3 w-[225px] h-[225px] md:w-[150px] md:h-[150px] rounded-full  justify-center hover:bg-accent hover:text-primary hover:font-serif hover:font-bold hover:drop-shadow-[0px_0px_20px_rgba(135,206,235,0.7)] hover:border-accent">
                     <span>Check All</span>
                     <span><FaArrowRight /></span>
                 </NavLink>
-                }
+                } */}
             </div>
         </div>
     )

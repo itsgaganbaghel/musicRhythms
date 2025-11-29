@@ -38,11 +38,11 @@ export const Routers = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: withSuspense(<AlbumContainer />),
+        element: <AlbumContainer />,
         children: [
           {
             path: "/",
-            element: withSuspense(<Home />),
+            element: <Home />,
           },
           {
             path: "album/:id",
@@ -50,7 +50,9 @@ export const Routers = createBrowserRouter([
           },
           {
             path: "/user/FavoriteSongs",
-            element: withSuspense(<LikedSongs />),
+            element: (
+              <ProtectedRoutes>{withSuspense(<LikedSongs />)}</ProtectedRoutes>
+            ),
           },
         ],
       },
